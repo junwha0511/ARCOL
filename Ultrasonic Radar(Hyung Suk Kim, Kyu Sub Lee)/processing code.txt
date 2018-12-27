@@ -1,0 +1,32 @@
+import processing.serial.*;
+Serial myport;
+String myString = null;?
+int angle;?
+int dis;
+void setup(){
+?myport=new Serial(this,"COM4",9600);?
+?size(1300,700);?
+?background(321);
+}
+void draw(){
+?noStroke();
+?fill(0,7);
+?rect(0,0,width,height);?
+?rader();?
+?drawline();
+?drawangry();
+}
+void serialEvent(Serial p){?
+?try{
+?? myString = p.readStringUntil('.');
+?if(myString !=null){
+?? String[] list=split(myString,',');?
+?? angle=int(list[0] );?
+?? dis=int(list[1].replace(".",""));?
+?? print(angle);?
+?? println(dis);
+?}
+}
+catch(Exception e){
+}
+}
